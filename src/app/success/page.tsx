@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { CheckIcon, ArrowRightIcon } from "@/components/ui/icons";
-import { defaultPlan, getPlanById } from "@/lib/plans";
+import { defaultPlan } from "@/lib/plans";
 import { formatPrice } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -12,12 +12,8 @@ export const metadata: Metadata = {
   description: "Подписка TAP VPN активирована.",
 };
 
-export default async function SuccessPage({
-  searchParams,
-}: PageProps<"/success">) {
-  const params = await searchParams;
-  const planParam = Array.isArray(params.plan) ? params.plan[0] : params.plan;
-  const plan = getPlanById(planParam ?? defaultPlan.id);
+export default function SuccessPage() {
+  const plan = defaultPlan;
 
   return (
     <>
@@ -51,6 +47,7 @@ export default async function SuccessPage({
                 <ArrowRightIcon className="h-4 w-4" />
               </Button>
             </div>
+
             <Button href="/" variant="ghost" size="sm">
               Вернуться на главную
             </Button>
